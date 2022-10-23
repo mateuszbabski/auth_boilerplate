@@ -11,7 +11,7 @@ defmodule AuthBoilerplateWeb.AuthController do
   plug :require_guest_user when action in [:login, :register]
   plug :get_user_by_reset_password_token when action in [:reset_password]
 
-  def index(conn, _params) do
+  def index(conn, _) do
     render(conn, "index.json", user: conn.assigns[:current_user])
   end
 
