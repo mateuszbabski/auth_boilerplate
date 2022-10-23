@@ -14,6 +14,7 @@ defmodule AuthBoilerplate.MixProject do
     ]
   end
 
+
   # Configuration for the OTP application.
   #
   # Type `mix help compile.app` for more information.
@@ -27,6 +28,7 @@ defmodule AuthBoilerplate.MixProject do
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
+
 
   # Specifies your project dependencies.
   #
@@ -45,7 +47,8 @@ defmodule AuthBoilerplate.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:bcrypt_elixir, "~> 2.0"}
+      {:bcrypt_elixir, "~> 2.0"},
+      {:ex_machina, "~> 2.7.0"}
     ]
   end
 
