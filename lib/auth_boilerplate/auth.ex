@@ -1,4 +1,4 @@
-defmodule AuthBoilerplate.Accounts do
+defmodule AuthBoilerplate.Auth do
   @moduledoc """
   The Accounts context.
   """

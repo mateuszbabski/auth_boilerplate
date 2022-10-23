@@ -6,7 +6,7 @@ defmodule AuthBoilerplateWeb.FallbackController do
   """
   use AuthBoilerplateWeb, :controller
 
-  # This clause handles errors returned by Ecto's insert/update/delete.
+ # This clause handles errors returned by Ecto's insert/update/delete.
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
     |> put_status(:unprocessable_entity)
@@ -20,5 +20,21 @@ defmodule AuthBoilerplateWeb.FallbackController do
     |> put_status(:not_found)
     |> put_view(AuthBoilerplateWeb.ErrorView)
     |> render(:"404")
+  end
+
+  # This clause handles authentication errors.
+  def call(conn, {:error, :unauthorized}) do
+    conn
+    |> put_status(:unauthorized)
+    |> put_view(AuthBoilerplateWeb.ErrorView)
+    |> render(:"401")
+  end
+
+  # This clause handles any user submission problems.
+  def call(conn, {:error, :bad_request, err}) do
+    conn
+    |> put_status(:bad_request)
+    |> put_view(AuthBoilerplateWeb.ErrorView)
+    |> render(:"400", error: err)
   end
 end
