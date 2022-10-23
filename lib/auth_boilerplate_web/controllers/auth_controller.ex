@@ -18,7 +18,9 @@ defmodule AuthBoilerplateWeb.AuthController do
   def login(conn, %{"email" => email, "password" => password}) do
     if user = Auth.get_user_by_email_and_password(email, password) do
       token = get_token(user)
-      render(conn, "login.json", user: user, token: token)
+      conn
+      |> put_status(:ok)
+      |> render("login.json", user: user, token: token)
     else
       {:error, :bad_request, "invalid email or password"}
     end

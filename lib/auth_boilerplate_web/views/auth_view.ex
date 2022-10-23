@@ -1,4 +1,4 @@
-defmodule AuthBoilerplateWeb.UserView do
+defmodule AuthBoilerplateWeb.AuthView do
   use AuthBoilerplateWeb, :view
   alias AuthBoilerplateWeb.AuthView
 
