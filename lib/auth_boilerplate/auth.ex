@@ -118,6 +118,9 @@ defmodule AuthBoilerplate.Auth do
   def generate_user_session_token(user) do
     {token, user_token} = UserToken.build_session_token(user)
     Repo.insert!(user_token)
+    # Change to string representation for authorization.
+    # This is a deviation from the mix.phx.gen one
+    # Eventually could switch to Phoenix.Token or JWT
     token
   end
 
