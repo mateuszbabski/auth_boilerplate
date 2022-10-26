@@ -138,7 +138,7 @@ defmodule AuthBoilerplate.Auth do
   """
 
   def delete_session_token(token) do
-    Repo.delete_all(UserToken.token_and_context_query(token, "sessions"))
+    Repo.delete_all(UserToken.token_and_context_query(token, "session"))
     :ok
   end
 
@@ -153,7 +153,7 @@ defmodule AuthBoilerplate.Auth do
 
   def deliver_user_reset_password_instructions(%User{} = user, reset_password_url_fun)
     when is_function(reset_password_url_fun, 1) do
-      {encoded_token, user_token} = UserToken.build_email_token(user, "reset password")
+      {encoded_token, user_token} = UserToken.build_email_token(user, "reset_password")
       Repo.insert!(user_token)
       UserNotifier.deliver_reset_password_instructions(user, reset_password_url_fun.(encoded_token))
     end

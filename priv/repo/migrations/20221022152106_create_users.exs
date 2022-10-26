@@ -6,7 +6,6 @@ defmodule AuthBoilerplate.Repo.Migrations.CreateUsers do
 
     create table(:users) do
       add :email, :citext, null: false
-      add :password, :string
       add :hash_password, :string
 
       timestamps()

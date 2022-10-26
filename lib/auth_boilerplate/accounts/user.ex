@@ -44,7 +44,10 @@ defmodule AuthBoilerplate.Accounts.User do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: password}}
         ->
-          put_change(changeset, :hash_password, Bcrypt.hash_pwd_salt(password))
+          changeset
+          |> put_change(:hash_password, Bcrypt.hash_pwd_salt(password))
+          |> delete_change(:password)
+          #put_change(changeset, :hash_password, Bcrypt.hash_pwd_salt(password))
         _ ->
           changeset
     end
