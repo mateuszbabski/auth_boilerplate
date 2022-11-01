@@ -25,7 +25,9 @@ config :auth_boilerplate, AuthBoilerplateWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :auth_boilerplate, AuthBoilerplate.Mailer, adapter: Swoosh.Adapters.Local
+config :auth_boilerplate, AuthBoilerplate.Mailer,
+  adapter: Swoosh.Adapters.Local
+  #api_key: "MAILER_API_KEY"
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false

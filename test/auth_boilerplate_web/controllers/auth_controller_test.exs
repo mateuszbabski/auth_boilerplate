@@ -98,7 +98,7 @@ defmodule AuthBoilerplateWeb.AuthControllerTest do
     test "doesnt divulge user existence", %{conn: conn, user: user} do
       conn_real = post(conn, Routes.auth_path(conn, :forgot_password), %{email: user.email})
       conn_fake = post(conn, Routes.auth_path(conn, :forgot_password), %{email: "fake@email.com"})
-      assert json_response(conn_real, 200) == json_response(conn_fake, 200)
+      assert json_response(conn_real, 200)["messages"] == json_response(conn_fake, 200)["messages"]
     end
 
     test "resets password successfully", %{conn: conn, user: user} do

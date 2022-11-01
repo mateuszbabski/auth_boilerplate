@@ -37,13 +37,14 @@ defmodule AuthBoilerplateWeb.AuthController do
     end
   end
 
+  @spec forgot_password(Plug.Conn.t(), map) :: Plug.Conn.t()
   def forgot_password(conn, %{"email" => email}) do
     if user = Auth.get_user_by_email(email) do
-      # token url
-      Auth.deliver_user_reset_password_instructions(user, fn token -> "#{token}" end)
+      {:ok, encoded_token} = Auth.deliver_user_reset_password_instructions(user)
+      render(conn, "forgot_password.json", encoded_token: encoded_token)
+    else
+      render(conn, "forgot_password.json")
     end
-
-    render(conn, "forgot_password.json")
   end
 
   def reset_password(conn, %{
